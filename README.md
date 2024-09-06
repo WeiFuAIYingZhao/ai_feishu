@@ -23,7 +23,7 @@
  |-- ai_app # app代码实现部分
     |-- settings.py # 飞书，ComfyUI配置部分
  |-- ai_feishu # django项目框架部分
- |-- db.sqlite3 # 异步队列使用库文件
+ |-- db.sqlite3 # 异步队列使用库文件--会自动创建
  |-- manage.py #  启动文件
  |-- README.md
 ```
