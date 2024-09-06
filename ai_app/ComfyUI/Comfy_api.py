@@ -76,13 +76,9 @@ def get_images(ws, prompt, comfy_id):
 
 # 解析comfyUI 工作流并获取图片
 def parse_worflow(ws, prompt, seed, json_info, comfy_id):
-    with open(json_info, 'r', encoding="utf-8") as workflow_api_txt2gif_file:
-        prompt_data = json.load(workflow_api_txt2gif_file)
-        # 设置文本提示
-        prompt_data["6"]["inputs"]["text"] = prompt
-        # 设置随机数
-        prompt_data["3"]["inputs"]["seed"] = seed
-        return get_images(ws, prompt_data, comfy_id)
+    from .workflow_api import set_json  #导入对应的json配置函数
+    prompt_data = set_json(json_info, prompt, seed)
+    return get_images(ws, prompt_data, comfy_id)
 
 
 # 生成图像并显示
@@ -126,4 +122,4 @@ if __name__ == "__main__":
     # prompt = 'Leopards hunt on the grassland'
     # print(get_queue())
     # generate_clip(prompt, seed, workflowfile, 1)
-    generate_clip('美女', 1, 'workflow_api.json')
+    generate_clip('美女', 1, 'workflow_api.json', '11111111111111111111111111')
