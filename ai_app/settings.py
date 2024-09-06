@@ -1,7 +1,7 @@
 #  飞书认证配置
 FEISHU_V2_SDK_CONFIGS = {
-    'FEISHU_APP_ID': "cli_a650c53ccdd8100c",  # 企业应用的id
-    'FEISHU_APP_SECRET': "7LsvEOzZ5AUzHU4owdRGdbVY1Xm5GnLe",  # 企业应用的SECRET
+    'FEISHU_APP_ID': "XXX",  # 企业应用的id
+    'FEISHU_APP_SECRET': "XXX",  # 企业应用的SECRET
     'FEISHU_VERIFY_TOKEN': None,  # 企业应用的事件加密token-------->
     'FEISHU_ENCRYPT_KEY': None,  # 企业应用的事件加密key
 }
