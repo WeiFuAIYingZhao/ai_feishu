@@ -2,7 +2,6 @@ import json
 import websocket
 import urllib.request
 import urllib.parse
-import random
 from ai_app import settings
 
 
@@ -75,27 +74,26 @@ def get_images(ws, prompt, comfy_id):
 
 
 # 解析comfyUI 工作流并获取图片
-def parse_worflow(ws, prompt, seed, json_info, comfy_id):
-    from .workflow_api import set_json  #导入对应的json配置函数
-    prompt_data = set_json(json_info, prompt, seed)
+def parse_worflow(ws, prompt, json_info, comfy_id):
+    from .work_api import set_json  #导入对应的json配置函数
+    prompt_data = set_json(json_info, prompt)
     return get_images(ws, prompt_data, comfy_id)
 
 
 # 生成图像并显示
 def generate_clip(prompt, idx, workflow_json, comfy_id):
-    seed = random.getrandbits(50)
     workflow_file_json = workflow_dir + workflow_json
     ws = websocket.WebSocket()
     ws.connect("ws://{}/ws?clientId={}".format(server_address, comfy_id))
     print(workflow_file_json)
-    images = parse_worflow(ws, prompt, seed, workflow_file_json, comfy_id)
+    images = parse_worflow(ws, prompt, workflow_file_json, comfy_id)
     for node_id in images:
         for image_data in images[node_id]:
             from datetime import datetime
             # 获取当前时间，并格式化为 YYYYMMDDHHMMSS 的格式
             timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
             # 使用格式化的时间戳在文件名中
-            GIF_LOCATION = "{}/{}_{}_{}.png".format('D:/django-env/ai_feishu/ai_app/output', idx, seed, timestamp)
+            GIF_LOCATION = "{}/{}_{}.png".format('D:/django-env/ai_feishu/ai_app/output', idx, timestamp)
             print('GIF_LOCATION:' + GIF_LOCATION)
             with open(GIF_LOCATION, "wb") as binary_file:
                 # 写入二进制文件
@@ -118,8 +116,6 @@ if __name__ == "__main__":
     # workflowfile = 'workflow_api.json'
     # server_address = '127.0.0.1:8188'
     # client_id = str(uuid.uuid4())
-    # seed = random.getrandbits(50)
     # prompt = 'Leopards hunt on the grassland'
     # print(get_queue())
-    # generate_clip(prompt, seed, workflowfile, 1)
-    generate_clip('美女', 1, 'workflow_api.json', '11111111111111111111111111')
+    generate_clip('水杯', 1, 'workflow_api.json', '11111111111111111111111111')

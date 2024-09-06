@@ -1,7 +1,7 @@
 {
   "3": {
     "inputs": {
-      "seed": 156680208700286,
+      "seed": 281105957758175,
       "steps": 20,
       "cfg": 8,
       "sampler_name": "euler",
@@ -26,16 +26,16 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K采样器"
+      "title": "KSampler"
     }
   },
   "4": {
     "inputs": {
-      "ckpt_name": "MoYou Artificial Human_v1080.safetensors"
+      "ckpt_name": "Dream_Diffusion_LIGHTNING_XL_V2.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
-      "title": "Checkpoint加载器(简易)"
+      "title": "Load Checkpoint"
     }
   },
   "5": {
@@ -46,12 +46,13 @@
     },
     "class_type": "EmptyLatentImage",
     "_meta": {
-      "title": "空Latent"
+      "title": "Empty Latent Image"
     }
   },
   "6": {
     "inputs": {
       "text": "beautiful scenery nature glass bottle landscape, , purple galaxy bottle,",
+      "speak_and_recognation": true,
       "clip": [
         "4",
         1
@@ -59,12 +60,13 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP文本编码器"
+      "title": "CLIP Text Encode (Prompt)"
     }
   },
   "7": {
     "inputs": {
       "text": "text, watermark",
+      "speak_and_recognation": true,
       "clip": [
         "4",
         1
@@ -72,7 +74,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP文本编码器"
+      "title": "CLIP Text Encode (Prompt)"
     }
   },
   "8": {
@@ -88,7 +90,7 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE解码"
+      "title": "VAE Decode"
     }
   },
   "9": {
@@ -101,7 +103,7 @@
     },
     "class_type": "SaveImage",
     "_meta": {
-      "title": "保存图像"
+      "title": "Save Image"
     }
   }
 }

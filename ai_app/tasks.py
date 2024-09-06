@@ -42,7 +42,7 @@ def updata_crad_task(test, open_id, token, comfy_id):
     log.info('<-----------Updating Crad Task----------->')
     fs_client = FeishuClientURL()
     # 生成并上传图片
-    put_queue = Comfy_api.generate_clip(test, 1, 'workflow_api.json', comfy_id)
+    put_queue = Comfy_api.generate_clip(test, 1, 'work_api.json', comfy_id)
     updata_images = fs_client.up_image_data(image=put_queue, image_type='message')
     msg1 = set_settings(updata_images, test, True)
     # 发送卡片
@@ -57,7 +57,7 @@ def up_msg_task(receive_id, test, comfy_id):
         发送卡片异步方法
     '''
     log.info('<-----------Up msg Task----------->')
-    put_queue = Comfy_api.generate_clip(test, 1, 'workflow_api.json', comfy_id)
+    put_queue = Comfy_api.generate_clip(test, 1, 'work_api.json', comfy_id)
     fs_client = FeishuClientURL()
     updata_images = fs_client.up_image_data(image=put_queue, image_type='message')
     log.info(updata_images)
