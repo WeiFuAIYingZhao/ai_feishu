@@ -11,7 +11,7 @@
 ```angular2html
     pip install Django  
     pip install celery  
-    pip install websocket websocket-client eventlet
+    pip install websocket websocket-client
     pip install requests requests_toolbelt
     pip install pydantic
     pip install sqlalchemy
