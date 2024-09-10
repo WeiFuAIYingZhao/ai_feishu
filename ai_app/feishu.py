@@ -6,6 +6,7 @@ from ai_app.apis.event import EventManager
 from ai_app.tasks import updata_crad_task, up_msg_task, queue_pull
 import logging
 import uuid
+from celery import chain
 
 log = logging.getLogger('django')
 event_manager = EventManager()
@@ -23,8 +24,8 @@ def message_get_event(req_data: MessageReadEvent):
     comfy_id = str(uuid.uuid4())
     receive_id = req_data.event.get('sender').get('sender_id').get('open_id')
     test = req_data.event.get('message').get('content')
-    queue_pull.delay(open_id=receive_id, updata=False)
-    up_msg_task.delay(receive_id=receive_id, test=test, comfy_id=comfy_id)
+    chain(queue_pull.s(open_id=receive_id, updata=False, message_id=False, img_data=None),
+          up_msg_task.s(receive_id=receive_id, test=test, comfy_id=comfy_id))()
     return JsonResponse({"message": "succeed"})
 
 # 处理飞书已读事件监听
@@ -42,8 +43,9 @@ def message_card_event_handler(req_data: MessageReadEvent):
     log.info('事件处理ID：%s', open_message_id)
     log.info('事件内容：%s', req_data.event)
     msg = req_data.event.get('action').get('value').get('prompt')
+    img_data = req_data.event.get('action').get('value').get('image_data')
     token = req_data.event.get('token')
-    queue_pull.delay(receive_id, True, False, token)
+    queue_pull.delay(receive_id, True, False, token, img_data=img_data, msg=msg)
     updata_crad_task.delay(test=msg, open_id=receive_id, token=token, comfy_id=comfy_id)
     return JsonResponse({"message": "succeed"})
 

@@ -1,7 +1,7 @@
 import json
 import random
 
-def set_json(workflow_json, prompt, seed):
+def set_json(workflow_json, prompt):
     with open(workflow_json, 'r', encoding="utf-8") as workflow_api_txt2gif_file:
         prompt_data = json.load(workflow_api_txt2gif_file)
         # 设置文本提示

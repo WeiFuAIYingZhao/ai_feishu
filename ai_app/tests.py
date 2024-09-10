@@ -130,7 +130,7 @@ if __name__ == "__main__":
     # 设置工作目录和项目相关的路径
     # WORKING_DIR = 'output'
     # SageMaker_ComfyUI = WORKING_DIR
-    workflowfile = 'workflow_api.json'
+    workflowfile = 'workflow_api.json.bak'
     COMFYUI_ENDPOINT = '127.0.0.1:8188'
     server_address = COMFYUI_ENDPOINT
     client_id = str(uuid.uuid4())

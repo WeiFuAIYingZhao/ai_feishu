@@ -20,8 +20,5 @@ from ai_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('event_card/', event_card),  # 生成卡片的信息
-    path('event_process/', event_process),  # 获取信息
-    path('test/', test),
-
+    path('', event_process),  # 获取信息
 ]

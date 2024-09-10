@@ -113,9 +113,9 @@ if __name__ == "__main__":
     # 设置工作目录和项目相关的路径
     # WORKING_DIR = 'output'
     # SageMaker_ComfyUI = WORKING_DIR
-    # workflowfile = 'workflow_api.json'
+    # workflowfile = 'workflow_api.json.bak'
     # server_address = '127.0.0.1:8188'
     # client_id = str(uuid.uuid4())
     # prompt = 'Leopards hunt on the grassland'
     # print(get_queue())
-    generate_clip('水杯', 1, 'workflow_api.json', '11111111111111111111111111')
+    generate_clip('水杯', 1, 'workflow_api.json.bak', '11111111111111111111111111')
