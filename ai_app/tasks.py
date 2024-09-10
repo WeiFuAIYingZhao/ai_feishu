@@ -73,7 +73,7 @@ def up_msg_task(message_id, receive_id, test, comfy_id):
     put_queue = Comfy_api.generate_clip(test, 1, Comfy_set['work_json'], comfy_id)
     fs_client = FeishuClientURL()
     updata_images = fs_client.up_image_data(image=put_queue, image_type='message')
-    log.info('image_key:',updata_images)
+    log.info(updata_images)
     msg = set_settings(updata_images, test, False)
     res = fs_client.send_crad_msg(msg=msg, receive_id_type='open_id', open_id=receive_id,
                                   msg_type='interactive', message_id=message_id)  # interactive
