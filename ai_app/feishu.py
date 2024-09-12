@@ -23,7 +23,9 @@ def request_url_verify_handler(req_data: UrlVerificationEvent):
 def message_get_event(req_data: MessageReadEvent):
     comfy_id = str(uuid.uuid4())
     receive_id = req_data.event.get('sender').get('sender_id').get('open_id')
+    # print('receive_id',receive_id)
     test = req_data.event.get('message').get('content')
+    print('test', test)
     chain(queue_pull.s(open_id=receive_id, updata=False, message_id=False, img_data=None),
           up_msg_task.s(receive_id=receive_id, test=test, comfy_id=comfy_id))()
     return JsonResponse({"message": "succeed"})
@@ -43,6 +45,7 @@ def message_card_event_handler(req_data: MessageReadEvent):
     log.info('事件处理ID：%s', open_message_id)
     log.info('事件内容：%s', req_data.event)
     msg = req_data.event.get('action').get('value').get('prompt')
+    print('test', msg)
     img_data = req_data.event.get('action').get('value').get('image_data')
     token = req_data.event.get('token')
     queue_pull.delay(receive_id, True, False, token, img_data=img_data, msg=msg)

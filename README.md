@@ -35,6 +35,8 @@ from .work_api import set_json  #导入对应的json配置函数
     pip install requests requests_toolbelt
     pip install pydantic
     pip install sqlalchemy
+    pip install cryptography
+    pip install pycryptodome
     # eventlet插件 Windows安装，linux无需安装
     pip install eventlet
 ```
