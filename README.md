@@ -18,14 +18,20 @@
 from .work_api import set_json  #导入对应的json配置函数
 ```
 
-+ 启动django  
-`python manage runserver 0.0.0.0:8080`
++ 启动django
+```
+    cd /opt/ai_feishu
+    source venv/bin/activate
+    nohup python manage.py runserver 0.0.0.0:8080 > feishu.log 2>&1 & 
+ ```
 + 启动celery
 ```
    windwos启动方式:  
      celery -A ai_feishu worker --loglevel=info -P eventlet  
-   linux启动方式:  
-     celery -A ai_feishu worker --loglevel=info
+   linux启动方式: 
+     cd /opt/ai_feishu
+     source venv/bin/activate 
+     nohup celery -A ai_feishu worker --loglevel=info > feishu.log 2>&1 & 
 ```
 + 项目依赖包:  
 ```angular2html
