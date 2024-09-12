@@ -21,4 +21,6 @@ from ai_app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', event_process),  # 获取信息
+    path('webhook/event', event_process),  # 获取信息
+    path('webhook/card', event_process),  # 获取信息
 ]

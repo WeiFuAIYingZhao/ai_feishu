@@ -72,7 +72,6 @@ def get_images(ws, prompt, comfy_id):
     # print('获取图片完成：{}'.format(output_images))
     return output_images
 
-
 # 解析comfyUI 工作流并获取图片
 def parse_worflow(ws, prompt, json_info, comfy_id):
     from .work_api import set_json  #导入对应的json配置函数
@@ -93,7 +92,7 @@ def generate_clip(prompt, idx, workflow_json, comfy_id):
             # 获取当前时间，并格式化为 YYYYMMDDHHMMSS 的格式
             timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
             # 使用格式化的时间戳在文件名中
-            GIF_LOCATION = "{}/{}_{}.png".format('D:/django-env/ai_feishu/ai_app/output', idx, timestamp)
+            GIF_LOCATION = "{}/{}_{}.png".format(workflow_dir, idx, timestamp)
             print('GIF_LOCATION:' + GIF_LOCATION)
             with open(GIF_LOCATION, "wb") as binary_file:
                 # 写入二进制文件

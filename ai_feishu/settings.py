@@ -124,11 +124,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 用redis创建队列库1
-CELERY_BROKER_URL = 'sqla+sqlite:///D:/django-env/ai_feishu/db.sqlite3'
+CELERY_BROKER_URL = 'sqla+sqlite:////opt/ai_feishu/db.sqlite3'
 # CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 # CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 # 用redis创建结果存储库2
-CELERY_RESULT_BACKEND = 'db+sqlite:///D:/django-env/ai_feishu/db.sqlite3'
+CELERY_RESULT_BACKEND = 'db+sqlite:////opt/ai_feishu/db.sqlite3'
 # CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
