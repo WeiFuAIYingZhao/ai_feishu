@@ -22,16 +22,16 @@ def queue_pull(open_id, updata, set_or_updata=True, token=None, message_id=False
     '''
     que = Comfy_api.get_queue()  # 获取队列数
     if img_data == None:
-        if que > 2:
-            queue_json = set_que_comfy('目前等待任务数: %s 个' % que, updata)
+        if que == 0:
+            queue_json = set_que_comfy('正在出图：预计30秒' % que, updata)
         else:
-            queue_json = set_que_comfy('目前等待任务数: %s 个' % que, updata)
+            queue_json = set_que_comfy('正在排队：前方%s个任务' % que, updata)
         log.info('<-----------队列信息:------->%s' % que)
     else:
-        if que > 2:
-            queue_json = set_up_crad(msg, '目前等待任务数: %s 个' % que, updata, img_data)
+        if que == 0:
+            queue_json = set_up_crad(msg, '正在出图：预计30秒' % que, updata, img_data)
         else:
-            queue_json = set_up_crad(msg, '目前等待任务数: %s 个' % que, updata, img_data)
+            queue_json = set_up_crad(msg, '正在排队：前方%s个任务' % que, updata, img_data)
         log.info('<-----------队列信息:------->%s' % que)
     # 发送队列数
     fs_client = FeishuClientURL()
