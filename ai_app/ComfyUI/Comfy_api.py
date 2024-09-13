@@ -4,11 +4,11 @@ import urllib.request
 import urllib.parse
 from ai_app import settings
 
-
 # 加载Comfy配置信息
 Comfy_set = settings.COMFYUI_V1
 server_address = Comfy_set['server_address']
 workflow_dir = Comfy_set['workflow_dir']
+
 
 # 向服务器队列发送提示词
 def queue_prompt(textPrompt, comfy_id):
@@ -72,6 +72,7 @@ def get_images(ws, prompt, comfy_id):
     # print('获取图片完成：{}'.format(output_images))
     return output_images
 
+
 # 解析comfyUI 工作流并获取图片
 def parse_worflow(ws, prompt, json_info, comfy_id):
     from .work_api import set_json  #导入对应的json配置函数
@@ -82,10 +83,15 @@ def parse_worflow(ws, prompt, json_info, comfy_id):
 # 生成图像并显示
 def generate_clip(prompt, idx, workflow_json, comfy_id):
     workflow_file_json = workflow_dir + workflow_json
-    ws = websocket.WebSocket()
-    ws.connect("ws://{}/ws?clientId={}".format(server_address, comfy_id))
-    print(workflow_file_json)
-    images = parse_worflow(ws, prompt, workflow_file_json, comfy_id)
+    try:
+        ws = websocket.WebSocket()
+        ws.connect("ws://{}/ws?clientId={}".format(server_address, comfy_id))
+        print(workflow_file_json)
+        images = parse_worflow(ws, prompt, workflow_file_json, comfy_id)
+        ws.close()
+    except:
+        ws.close()
+        return 'erro: 监听图片写入失败'
     for node_id in images:
         for image_data in images[node_id]:
             from datetime import datetime
